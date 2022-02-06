@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  wirewhale-db:
+    image: postgres:latest
+    container_name: wirewhale_db
+    environment:
+      - POSTGRES_USER=wirewhale
+      - POSTGRES_PASSWORD=wirewhale
+      - POSTGRES_DB=wirewhale
+    ports:
+      - 5432:5432

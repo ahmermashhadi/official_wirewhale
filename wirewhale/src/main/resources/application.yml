@@ -1,0 +1,65 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /camunda
+
+server-url: http://localhost:8080/camunda
+server-route:
+
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+    firstName: Demo
+  filter:
+    create: All tasks
+
+logging.level.org.camunda.bpm.client: info
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wirewhale
+    username: wirewhale
+    password: wirewhale
+    driverClassName: org.postgresql.Driver
+  jersey:
+    application-path: /engine-rest
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      jdbc:
+        time_zone: UTC
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/wirewhale
+    password: wirewhale
+    user: wirewhale
+    schemas: wirewhale
+  main:
+    allow-bean-definition-overriding: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /doc/api-docs
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+    operationsSorter: alpha
+
+process:
+  name: wire_whale_diagram
+
+api:
+  return-task: http://localhost:8080/camunda/v1/test/call/result
+  inform2or2: http://localhost:8080/camunda/v1/test/call/document
+  inform2or2finish: http://localhost:8080/camunda/v1/test/call/document
+  cancel: http://localhost:8080/camunda/v1/test/call/result
+  askForSchedule: http://localhost:8080/camunda/v1/test/call/ask/for/schedule
+  ask2or2GiveMoreTime: http://localhost:8080/camunda/v1/ask/2or2/give/more/time
+  send-info-not-enough-data: http://localhost:8080/camunda/v1/test/call/not/enough/data
+  name:
+    inform2or2: testPdf.pdf
+    inform2or2finish: testPdf.pdf
